@@ -1,15 +1,121 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>E-Commerce Frontend</title>
-    <link rel="stylesheet" href="styles/main.css">
+  <meta charset="UTF-8">
+  <title>Navbar</title>
+  <link rel="stylesheet" href="styles/main.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+
 </head>
+
 <body>
-    <header>
-        <h1>Welcome to Our Online Store</h1>
-    </header>
-    <script src="scripts/app.js"></script>
+
+  <nav class="navbar">
+    <div class="logo">
+      <img src="assets/logo.png" alt="Logo">
+    </div>
+
+    <div class="menu" id="menu">
+      <a href="#">Home</a>
+      <a href="#">Product</a>
+      <a href="#">About</a>
+      <a href="#">Contact</a>
+    </div>
+
+    <div class="search-box">
+      <input type="text" placeholder="Search for products, brands and more">
+      <i class="fa fa-search"></i>
+    </div>
+
+    <div class="nav-icons">
+      <div class="icon">
+        <i class="fa-regular fa-user"></i>
+        <span>Profile</span>
+      </div>
+
+      <div class="icon">
+        <i class="fa-solid fa-cart-shopping"></i>
+        <span>Add to Cart</span>
+      </div>
+
+    </div>
+    <div class="hamburger" onclick="toggleMenu()">
+      <i class="fa fa-bars"></i>
+    </div>
+
+    <div class="category-bar">
+      <a href="#">Popular</a>
+      <a href="#">Kurti, Saree & Lehenga</a>
+      <a href="#">Women Western</a>
+      <a href="#">Lingerie</a>
+      <a href="#">Men</a>
+      <a href="#">Kids & Toys</a>
+      <a href="#">Home & Kitchen</a>
+      <a href="#">Beauty & Health</a>
+      <a href="#">Jewellery & Accessories</a>
+      <a href="#">Bags & Footwear</a>
+      <a href="#">Electronics</a>
+
+    </div>
+
+  </nav>
+  <div id="carouselExampleCaptions" class="carousel slide" data-bs-ride="carousel" data-bs-interval="2000">
+    <div class="carousel-indicators">
+      <button type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide-to="0" class="active"
+        aria-current="true" aria-label="Slide 1"></button>
+      <button type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide-to="1"
+        aria-label="Slide 2"></button>
+      <button type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide-to="2"
+        aria-label="Slide 3"></button>
+    </div>
+    <div class="carousel-inner">
+      <div class="carousel-item active">
+        <picture>
+          <source media="(max-width: 768px)" srcset="assets/banner2.png">
+          <img src="assets/flipkart4.webp" class="d-block w-100" alt="...">
+        </picture>
+
+        <div class="carousel-caption d-none d-md-block">
+        </div>
+      </div>
+      <div class="carousel-item">
+        <picture>
+          <source media="(max-width: 768px)" srcset="assets/banner3.png">
+          <img src="assets/flipkart2.webp" class="d-block w-100" alt="...">
+        </picture>
+
+        <div class="carousel-caption d-none d-md-block">
+          <button class="buy-btn"> Buy Now </button>
+        </div>
+      </div>
+      <div class="carousel-item">
+
+        <picture>
+          <source media="(max-width: 768px)" srcset="assets/banner5.png">
+          <img src="assets/flipkart3.webp" class="d-block w-100" alt="...">
+        </picture>
+
+        <div class="carousel-caption d-none d-md-block">
+          <button class="buy-btn"> Buy Now </button>
+        </div>
+      </div>
+    </div>
+    <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide="prev">
+      <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+      <span class="visually-hidden">Previous</span>
+    </button>
+    <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide="next">
+      <span class="carousel-control-next-icon" aria-hidden="true"></span>
+      <span class="visually-hidden">Next</span>
+    </button>
+  </div>
+
+  <script src="scripts/app.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+
 </body>
+
 </html>
