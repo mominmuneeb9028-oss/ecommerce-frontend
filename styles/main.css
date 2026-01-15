@@ -251,7 +251,7 @@
     box-shadow: 0 5px 10px rgba(0,0,0,0.1);
   }
   .navbar {
-    position: sticky;   
+    position: relative;   
     top: 0;
     z-index: 9999;
     background: #fff;
