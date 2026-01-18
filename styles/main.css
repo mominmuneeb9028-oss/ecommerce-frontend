@@ -219,10 +219,39 @@
 
 /* Wishlist */
 .wishlist-btn {
-    background: #dc3545;
+    background: ;
     color: #fff;
 }
 
+.brand-slider {
+  width: 100%;
+  overflow: hidden;
+  background: #f7ebff;
+  padding: 20px 0;
+}
+
+.brand-track {
+  display: flex;
+  gap: 40px;
+  animation: scrollBrands 20s linear infinite;
+}
+
+.brand-track img {
+  height: 70px;
+  /* Remove background + padding + shadow */
+  background: none;
+  padding: 0;
+  border-radius: 0;
+  box-shadow: none;
+}
+
+
+
+
+@keyframes scrollBrands {
+  0% { transform: translateX(0); }
+  100% { transform: translateX(-50%); }
+}
 
 
 @media (max-width: 768px) 

@@ -27,6 +27,26 @@ const db = getFirestore(app);
 console.log(db);
 
 
+async function loadBrands() {
+  const brandsContainer = document.getElementById("brands");
+
+  const querySnapshot = await getDocs(collection(db, "Brands"));
+  
+  querySnapshot.forEach((doc) => {
+    const data = doc.data();
+
+    const img = document.createElement("img");
+    img.src = data.image;
+    img.style.height = "70px";
+
+    brandsContainer.appendChild(img);
+  });
+}
+
+loadBrands();
+
+
+
 
 
 
