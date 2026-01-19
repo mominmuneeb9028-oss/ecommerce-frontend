@@ -67,9 +67,15 @@ async function loadProducts() {
         
         <p class="price">₹${product.price}</p>
         <div class="product-actions">
-          <button onclick="addToCart('${doc.id}')">Add to Cart</button>
-          <button onclick="addToWishlist('${doc.id}')" class="wishlist-btn"><i class="bi bi-heart"></i></button>
-        </div>
+  <button class="add-bag-btn" onclick="addToCart('${doc.id}')">
+     ADD TO CARD
+  </button>
+
+  <button class="wishlist-outline" onclick="addToWishlist('${doc.id}')">
+    <i class="fa-regular fa-heart"></i> 
+  </button>
+</div>
+
 
 
         
