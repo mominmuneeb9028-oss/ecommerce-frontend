@@ -258,11 +258,7 @@
     color: white;
 }
 
-.wishlist-outline:hover {
-   
-    color: ;
-    
-}
+
 
 
 
@@ -288,12 +284,48 @@
   box-shadow: none;
 }
 
-
-
-
 @keyframes scrollBrands {
   0% { transform: translateX(0); }
   100% { transform: translateX(-50%); }
+}
+
+
+.furniture-section {
+  background: #f2f2f2;
+  padding: 40px 0;
+}
+
+.furniture-container {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 20px;
+  padding: 40px 0;
+}
+
+.furniture-card {
+  background: #fff;
+  padding: 15px;
+  border-radius: 12px;
+  box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+  text-align: center;
+}
+
+.furniture-card img {
+  width: 100%;
+  height: 220px;
+  object-fit: cover;
+  border-radius: 10px;
+}
+
+.furniture-price {
+  font-size: 18px;
+  color: #28a745;
+  font-weight: bold;
+}
+
+.laptop-section {
+  background: #f8f9fa;
+  padding: 40px 0;
 }
 
 

@@ -75,45 +75,52 @@ async function loadProducts() {
     <i class="fa-regular fa-heart"></i> 
   </button>
 </div>
-
-
-
-        
-      </div>
+</div>
     `;
   });
 }
 
 loadProducts();
 
-import {
-  query,
-  where,
-  limit
-} from "https://www.gstatic.com/firebasejs/10.7.1/firebase-firestore.js";
+
+
+// 🔥 FURNITURE FETCH CODE
+
+// 🔥 FURNITURE FETCH CODE (FINAL)
+
+// 🔥 FURNITURE FETCH CODE (WITH CART + HEART)
 
 const furnitureContainer = document.getElementById("furnitureContainer");
 
 async function loadFurnitureProducts() {
   console.log("🔥 Furniture function called");
 
-  const q = query(
-    collection(db, "furniture"), // ✅ FIXED
-    limit(12)
-  );
+  const snapshot = await getDocs(collection(db, "products collection"));
+  console.log("🔥 Furniture docs:", snapshot.size);
 
-  const querySnapshot = await getDocs(q);
+  furnitureContainer.innerHTML = "";
 
-  console.log("🔥 Furniture docs count:", querySnapshot.size);
+  snapshot.forEach((doc) => {
+    const item = doc.data();
 
-  querySnapshot.forEach((doc) => {
-    const product = doc.data();
+    // 👉 sirf furniture category
+    if (item.category !== "furniture") return;
 
     furnitureContainer.innerHTML += `
       <div class="furniture-card">
-        <img src="${product.image}">
-        <h4>${product.name}</h4>
-        <p class="furniture-price">₹${product.price}</p>
+        <img src="${item.image}" alt="${item.name}">
+        <h6>${item.name}</h6>
+        <p class="furniture-price">₹${item.price}</p>
+
+        <div class="product-actions">
+          <button class="add-bag-btn" onclick="addToCart('${doc.id}')">
+            ADD TO CART
+          </button>
+
+          <button class="wishlist-outline" onclick="addToWishlist('${doc.id}')">
+            <i class="fa-regular fa-heart"></i>
+          </button>
+        </div>
       </div>
     `;
   });
@@ -122,7 +129,48 @@ async function loadFurnitureProducts() {
 loadFurnitureProducts();
 
 
+// 💻 LAPTOP COLLECTION FETCH CODE
+
+const laptopContainer = document.getElementById("laptopContainer");
+
+async function loadLaptopProducts() {
+  console.log("💻 Laptop function called");
+
+  const snapshot = await getDocs(collection(db, "products collection"));
+  console.log("💻 Laptop docs:", snapshot.size);
+
+  laptopContainer.innerHTML = "";
+
+  snapshot.forEach((doc) => {
+    const item = doc.data();
+
+    // 👉 Sirf laptop category
+    if (item.category !== "laptop") return;
+
+    laptopContainer.innerHTML += `
+      <div class="furniture-card">
+        <img src="${item.image}" alt="${item.name}">
+        <h6>${item.name}</h6>
+        <p class="furniture-price">₹${item.price}</p>
+
+        <div class="product-actions">
+          <button class="add-bag-btn" onclick="addToCart('${doc.id}')">
+            ADD TO CART
+          </button>
+
+          <button class="wishlist-outline" onclick="addToWishlist('${doc.id}')">
+            <i class="fa-regular fa-heart"></i>
+          </button>
+        </div>
+      </div>
+    `;
+  });
+}
+
+loadLaptopProducts();
 
 
 
-loadFurnitureProducts();
+
+
+
