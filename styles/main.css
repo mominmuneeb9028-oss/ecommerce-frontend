@@ -185,6 +185,7 @@
     margin: 12px 0 5px;
     font-size: 18px;
     text-align: center;
+    height: 60px;
 }
 
 /* Price */
@@ -194,6 +195,7 @@
     font-weight: bold;
     margin-bottom: 10px;
     text-align: center;
+    height: 40px;
 }
 
 /* Buttons */
@@ -307,7 +309,6 @@
   padding: 15px;
   border-radius: 12px;
   box-shadow: 0 4px 10px rgba(0,0,0,0.1);
-  text-align: center;
 }
 
 .furniture-card img {
@@ -316,15 +317,25 @@
   object-fit: cover;
   border-radius: 10px;
 }
-
+.furniture-card h6{
+  height: 80px;
+  overflow: hidden;
+}
 .furniture-price {
   font-size: 18px;
   color: #28a745;
   font-weight: bold;
+  height: 40px;
+  text-align: center;
 }
 
 .laptop-section {
   background: #f8f9fa;
+  padding: 40px 0;
+}
+
+.shoes-section {
+  background: #fff;
   padding: 40px 0;
 }
 
@@ -416,5 +427,3 @@
         grid-template-columns: repeat(2, 1fr);
     }
 }
-
-
