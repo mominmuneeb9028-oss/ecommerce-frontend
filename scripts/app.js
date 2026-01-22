@@ -169,6 +169,46 @@ async function loadLaptopProducts() {
 
 loadLaptopProducts();
 
+// 👟 SHOES COLLECTION FETCH CODE
+
+const shoesContainer = document.getElementById("shoesContainer");
+
+async function loadShoesProducts() {
+  console.log("👟 Shoes function called");
+
+  const snapshot = await getDocs(collection(db, "products collection"));
+  console.log("👟 Shoes docs:", snapshot.size);
+
+  shoesContainer.innerHTML = "";
+
+  snapshot.forEach((doc) => {
+    const item = doc.data();
+
+    // 👉 sirf shoes category
+    if (item.category !== "shoes") return;
+
+    shoesContainer.innerHTML += `
+      <div class="furniture-card">
+        <img src="${item.image}" alt="${item.name}">
+        <h6>${item.name}</h6>
+        <p class="furniture-price">₹${item.price}</p>
+
+        <div class="product-actions">
+          <button class="add-bag-btn" onclick="addToCart('${doc.id}')">
+            ADD TO CART
+          </button>
+
+          <button class="wishlist-outline" onclick="addToWishlist('${doc.id}')">
+            <i class="fa-regular fa-heart"></i>
+          </button>
+        </div>
+      </div>
+    `;
+  });
+}
+
+loadShoesProducts();
+
 
 
 
