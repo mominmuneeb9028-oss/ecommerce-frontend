@@ -67,7 +67,7 @@ async function loadProducts() {
         
         <p class="price">₹${product.price}</p>
         <div class="product-actions">
-  <button class="add-bag-btn" onclick="addToCart('${doc.id}')">
+  <button class="add-bag-btn" onclick="addToCart('${product.id}');event.stopPropagation();">
      ADD TO CARD
   </button>
 
