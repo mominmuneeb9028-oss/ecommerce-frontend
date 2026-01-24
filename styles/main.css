@@ -186,12 +186,9 @@
     margin: 12px 0 5px;
     font-size: 18px;
     text-align: center;
-<<<<<<< HEAD
     height: 80px;
-    
-=======
     height: 60px;
->>>>>>> 7e83aacff8d74af417f1f729efc6c8311b6d3eb2
+
 }
 
 /* Price */
@@ -324,29 +321,25 @@
   object-fit: cover;
   border-radius: 10px;
 }
-<<<<<<< HEAD
 .furniture-card h6
 {
   height: 120px;
   padding: 20px;
    overflow:hidden;
-=======
+}
 .furniture-card h6{
   height: 80px;
   overflow: hidden;
->>>>>>> 7e83aacff8d74af417f1f729efc6c8311b6d3eb2
+
 }
 .furniture-price {
   font-size: 18px;
   color: #28a745;
   font-weight: bold;
-<<<<<<< HEAD
   height: 50px;
- 
-=======
   height: 40px;
   text-align: center;
->>>>>>> 7e83aacff8d74af417f1f729efc6c8311b6d3eb2
+
 }
 
 .laptop-section {
