@@ -5,7 +5,6 @@ function toggleMenu() {
 }
 
 
-
   // 🔥 Firebase Config
 import { initializeApp } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-app.js";
 import { getFirestore, collection, getDocs } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-firestore.js";
@@ -46,10 +45,6 @@ async function loadBrands() {
 loadBrands();
 
 
-
-
-
-
 // 🔥 STEP 4: PRODUCTS FETCH CODE (PASTE HERE)
 
 const productContainer = document.getElementById("productContainer");
@@ -61,7 +56,7 @@ async function loadProducts() {
     const product = doc.data();
 
     productContainer.innerHTML += `
-      <div class="product-card">
+      <div class="product-card" onclick="openProduct('${doc.id}')">
         <img src="${product.image}" alt="${product.name}">
         <h3>${product.name}</h3>
         
@@ -194,11 +189,11 @@ async function loadShoesProducts() {
         <p class="furniture-price">₹${item.price}</p>
 
         <div class="product-actions">
-          <button class="add-bag-btn" onclick="addToCart('${doc.id}')">
+          <button class="add-bag-btn" onclick="addToCart('${doc.id}');event.stopPropagation();">
             ADD TO CART
           </button>
 
-          <button class="wishlist-outline" onclick="addToWishlist('${doc.id}')">
+          <button class="wishlist-outline" onclick="addToWishlist('${doc.id}');event.stopPropagation();">
             <i class="fa-regular fa-heart"></i>
           </button>
         </div>
@@ -209,6 +204,66 @@ async function loadShoesProducts() {
 
 loadShoesProducts();
 
+// ================= PRODUCT OPEN =================
+window.openProduct = function(id) {
+  localStorage.setItem("selectedProduct", id);
+  window.location.href = "product.html";
+};
+
+
+// ================= ADD TO CART =================
+window.addToCart = async function(id) {
+  const snapshot = await getDocs(collection(db, "products"));
+  let productData = null;
+
+  snapshot.forEach(doc => {
+    if (doc.id === id) {
+      productData = { id: doc.id, ...doc.data() };
+    }
+  });
+
+  if (!productData) return;
+
+  let cart = JSON.parse(localStorage.getItem("cart")) || [];
+
+  const index = cart.findIndex(item => item.id === id);
+
+  if (index > -1) {
+    cart[index].quantity += 1;
+  } else {
+    cart.push({ ...productData, quantity: 1 });
+  }
+
+  localStorage.setItem("cart", JSON.stringify(cart));
+  alert("Added to Cart ✅");
+};
+
+
+// ================= ADD TO WISHLIST =================
+window.addToWishlist = async function(id) {
+  const snapshot = await getDocs(collection(db, "products"));
+  let productData = null;
+
+  snapshot.forEach(doc => {
+    if (doc.id === id) {
+      productData = { id: doc.id, ...doc.data() };
+    }
+  });
+
+  if (!productData) return;
+
+  let wishlist = JSON.parse(localStorage.getItem("wishlist")) || [];
+
+  const exists = wishlist.find(item => item.id === id);
+  if (exists) {
+    alert("Already in Wishlist ❤️");
+    return;
+  }
+
+  wishlist.push(productData);
+  localStorage.setItem("wishlist", JSON.stringify(wishlist));
+  alert("Added to Wishlist ❤️");
+};
 
 
 

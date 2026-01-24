@@ -1,0 +1,180 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <link rel="icon" href="../assets/Q_logo.png" />
+  <title>MegaMart — Home</title>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+    <nav class="navbar" style="position: fixed; z-index: 10;">
+        <div class="logo">MEGAMART</div>
+    
+        <ul class="nav-links">
+            <li><a href="Home.html">Home</a></li>
+            <li><a href="#about">About</a></li>
+            <li><a href="#contact">Contact</a></li>
+        </ul>
+    
+        <div class="auth-buttons">
+            <a href="/Home/sign In/signIn.html" class="login">Login</a>
+            <a href="/Home/sign up/signup.html" class="signup">Sign Up</a>
+        </div>
+    </nav>
+
+  <!-- HERO -->
+  <section class="hero">
+    <div class="container hero-grid">
+      <div class="hero-left">
+        <h1>Premium Products for Modern Life</h1>
+        <p class="lead">Fast delivery • Best prices • Curated collections</p>
+        <div class="hero-ctas">
+          <a class="btn btn-outline mainbtn" href="sign up/signup.html">Create Account</a>
+        </div>
+
+        <div class="trust">
+          <div>Free shipping over ₹999</div>
+          <div>30-day returns</div>
+        </div>
+      </div>
+
+      <div class="hero-right">
+        <!-- Decorative product card -->
+        <div class="product-card">
+          <img src="../assets/home.jpg" alt="Featured product">
+        </div>
+      </div>
+    </div>  
+  </section>
+
+
+  <section id="about">
+  <main class="container section">
+    <h1>About MegaMart</h1>
+    <p class="lead">We started MegaMart to make thoughtfully chosen products accessible to everyone. Our mission is to combine quality with affordability and fast delivery across India.</p>
+
+    <section class="team-grid">
+      <article class="team-card">
+        <img src="assets/our mession.jpg" alt="Mission" style="background-size: cover; object-fit: cover;">
+        <h3>Our Mission</h3>
+        <p>Provide exceptional products and customer experience with transparent pricing.</p>
+      </article>
+      <article class="team-card">
+        <img src="assets/our vision.avif" alt="Vision"  style="background-size: cover; object-fit: cover;">
+        <h3>Our Vision</h3>
+        <p>Be the go-to online store for curated essentials that simplify daily life.</p>
+      </article>
+      <article class="team-card">
+        <img src="assets/core values.jpg" alt="Values"  style="background-size: cover; object-fit: cover;">
+        <h3>Core Values</h3>
+        <p>Quality, integrity, speed, and customer focus.</p>
+      </article>
+    </section>
+  </main>
+</section>
+ 
+
+
+<section id="contact">
+  <main class="container section contact-section">
+    <h1>Contact Us</h1>
+    <p class="lead">Questions about orders, products or returns? Send us a message and we'll get back within 24 hours.</p>
+
+    <div class="contact-grid">
+      <form class="contact-form" action="#" method="post" onsubmit="redirectToWhatsapp(event)">
+        <label>
+          Name
+          <input type="text" name="name" required placeholder="Your name" id="name">
+        </label>
+
+        <label>
+          Email
+          <input type="email" name="email" required placeholder="you@example.com" id="email">
+        </label>
+
+        <label>
+          Message
+          <textarea name="message" rows="6" required placeholder="How can we help?" id="message"></textarea>
+        </label>
+
+        <button class="btn btn-primary" type="submit">Send Message</button>
+      </form>
+
+      <aside class="contact-info">
+        <h3>Customer Support</h3>
+        <p>Email: mominmuneeb9028@gmail.com</p>
+        <p>Phone: +91 9209661455</p>
+        <p>Address: Malegaon Nashik, Maharshtra, India</p>
+
+        <div class="map-placeholder">
+          <div class="map-container">
+  <iframe
+    src="https://www.google.com/maps/embed?pb=!1m14!1m12!1m3!1d355036.30579436955!2d74.50453207874571!3d20.55677386573297!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!5e1!3m2!1sen!2sin!4v1767995486355!5m2!1sen!2sin"
+    loading="lazy"
+    referrerpolicy="no-referrer-when-downgrade"
+    allowfullscreen
+    title="MegaMart location map"></iframe>
+</div>
+
+        </iframe></div>
+      </aside>
+    </div>
+  </main>
+</section>
+
+  <script>
+    document.getElementById('navToggleContact').addEventListener('click', function () {
+      document.getElementById('mainNavContact').classList.toggle('open');
+    });
+    document.getElementById('yearContact').textContent = new Date().getFullYear();
+
+
+ 
+    document.getElementById('navToggleAbout').addEventListener('click', function () {
+      document.getElementById('mainNavAbout').classList.toggle('open');
+    });
+    document.getElementById('yearAbout').textContent = new Date().getFullYear();
+
+    // small JS for nav toggle and year
+    document.getElementById('navToggle').addEventListener('click', function () {
+      document.getElementById('mainNav').classList.toggle('open');
+    });
+    document.getElementById('year').textContent = new Date().getFullYear();
+
+
+
+     function redirectToWhatsapp(event) {
+  event.preventDefault();
+
+  const name = document.querySelector("#name").value;
+  const lName = document.querySelector("#email").value;
+  const messageText = document.querySelector("#message").value;
+
+  const message =
+    "Name: " + name + " " + email + "\n" +
+    "Email: " + email + "\n\n" +
+    "Message:\n" + messageText;
+
+  const encodedMessage = encodeURIComponent(message);
+
+  
+  const whatsappURL =
+    "https://wa.me/+919325521257?text=" + encodedMessage;
+
+  window.open(whatsappURL, "_blank");
+
+/*Success Message show*/
+  document.getElementById("sucessmessage").remove("d-none");
+
+  document.getElementById("contactme").reset()
+
+  setTimeout(()=>
+    document.getElementById("sucessmessage").classList.remove("d-none"),5000);
+}
+
+  </script>
+</body>
+</html>

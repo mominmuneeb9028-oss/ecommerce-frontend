@@ -1,0 +1,314 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>MegaMart — My Cart</title>
+  <link rel="icon" href="/assets/Q_logo.png" type="image/x-icon">
+  <script src="https://cdn.tailwindcss.com"></script>
+  <style>
+    body {
+      background-color: white;
+    }
+    /* subtle shadow cards like in your screenshot */
+    .glass-card{background:rgba(255,255,255,0.8);backdrop-filter: blur(6px);box-shadow: 0 6px 18px rgba(15,15,30,0.06);}
+    .sidebar-gradient{background: linear-gradient(180deg,#ff6a3d,#ff7f3d 60%, #ff7a3d 100%)}
+    .stat-card{border-radius:12px;padding:18px;}
+    input:focus, textarea:focus{outline:none;box-shadow:0 0 0 4px rgba(99,102,241,0.06);}
+  </style>
+  <link rel="preconnect" href="https://fonts.gstatic.com">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700;800&display=swap" rel="stylesheet">
+  <style>
+    :root{
+      --orange-1:#ff7a2d;
+      --orange-2:#ff5a2b;
+      --bg:#faf7fb; /* soft */
+      --card:#ffffff;
+      --muted:#7b6f7e;
+      --accent:#5b3ee6; /* purple button */
+      --success:#22c55e;
+      --danger:#ff5264;
+      --glass: rgba(91,62,230,0.06);
+      font-family: 'Inter', system-ui, -apple-system, 'Segoe UI', Roboto, 'Helvetica Neue', Arial;
+    }
+    *{box-sizing:border-box}
+    body{margin:0;background:linear-gradient(180deg,var(--bg),#fff);color:#222}@media (prefers-color-scheme:dark){:root{--bg:#0b0b10;--card:#0f1115;--muted:#9aa0ab}}
+
+    /* App layout */
+    .app{display:flex;min-height:100vh}
+    .sidebar{width:260px;padding:28px;background:linear-gradient(180deg,var(--orange-1),var(--orange-2));color:#fff;display:flex;flex-direction:column;gap:18px}
+    .brand{display:flex;align-items:center;gap:12px}
+    .logo{width:44px;height:44px;border-radius:10px;background:rgba(255,255,255,0.12);display:flex;align-items:center;justify-content:center;font-weight:800}
+    .brand h1{font-size:18px;margin:0}
+    .nav{margin-top:8px;display:flex;flex-direction:column;gap:6px}
+    .nav a{padding:10px 14px;border-radius:8px;color:#fff;text-decoration:none;display:block;opacity:0.95}
+    .nav a.active{background:rgba(255,255,255,0.12)}
+    .logout{margin-top:auto}
+    .logout button{width:100%;padding:10px;border-radius:8px;border:none;background:#fff;color:var(--orange-2);font-weight:700;cursor:pointer}
+
+    /* main area */
+    .main{flex:1;padding:28px}
+    .topbar{display:flex;align-items:center;gap:18px;justify-content:space-between;margin-bottom:18px}
+    .search{flex:1;margin:0 18px}
+    .search input{width:100%;padding:12px 14px;border-radius:10px;border:1px solid #eee;background:#fff}
+    .user-actions{display:flex;gap:12px;align-items:center}
+    .pill{background:var(--card);border-radius:8px;padding:8px 12px;box-shadow:0 6px 18px rgba(100,80,120,0.06)}
+
+    .page-title{font-size:26px;margin:6px 0 2px}
+    .subtitle{color:var(--muted);margin:0 0 18px}
+
+    .layout{display:grid;grid-template-columns:1fr 360px;gap:20px}
+
+    /* products grid */
+    .products-card{background:var(--card);padding:16px;border-radius:12px;box-shadow:0 8px 20px rgba(30,20,60,0.04)}
+    .products-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:14px}
+    .product{background:linear-gradient(180deg,#fff,#fbfbff);border-radius:10px;padding:12px;display:flex;flex-direction:column;gap:8px;border:1px solid #f1eef6}
+    .product .img{height:120px;border-radius:8px;background:#f4f4ff;display:flex;align-items:center;justify-content:center;font-weight:700;color:#666}
+    .product h4{margin:0;font-size:15px}
+    .price{font-weight:700}
+    .rating{font-size:12px;color:var(--muted)}
+    .p-actions{display:flex;gap:8px;margin-top:auto}
+    .btn{padding:9px 12px;border-radius:8px;border:none;cursor:pointer}
+    .btn-primary{background:var(--accent);color:#fff}
+    .btn-ghost{background:transparent;border:1px solid #e8e6ef;color:#333}
+
+    /* orders table */
+    .orders-card{background:var(--card);padding:16px;border-radius:12px;box-shadow:0 8px 20px rgba(30,20,60,0.04)}
+    table{width:100%;border-collapse:collapse}
+    thead th{color:var(--muted);text-align:left;padding:12px 8px;font-weight:600;font-size:13px}
+    tbody td{padding:12px 8px;border-top:1px solid #f1eef6;vertical-align:middle}
+    .qty-controls{display:flex;align-items:center;gap:8px}
+    .qty-controls button{width:30px;height:30px;border-radius:8px;border:1px solid #eee;background:#fff;cursor:pointer}
+
+    /* right summary */
+    .summary-card{background:var(--card);padding:16px;border-radius:12px;box-shadow:0 8px 20px rgba(30,20,60,0.04)}
+    .summary-row{display:flex;justify-content:space-between;padding:8px 0;color:var(--muted)}
+    .total{font-size:20px;font-weight:800}
+    .checkout{margin-top:12px;display:flex;gap:10px}
+
+    /* responsive */
+    @media (max-width:1000px){.products-grid{grid-template-columns:repeat(2,1fr)}.layout{grid-template-columns:1fr}}@media (max-width:600px){.products-grid{grid-template-columns:1fr}.sidebar{display:none;padding:12px}.topbar{flex-direction:column;align-items:stretch}.search{margin:10px 0}}
+  </style>
+</head>
+<body>
+  <div class="app">
+        <aside class="w-64 min-h-screen sidebar-gradient text-white p-6">
+      <div class="flex items-center gap-3 mb-8">
+        <div class="w-10 h-10 rounded-full bg-white/20 flex items-center justify-center font-bold">Q</div>
+        <div>
+          <div class="font-bold text-lg">MegaMart</div>
+          <div class="text-xs opacity-90">Premium Quality Products</div>
+        </div>
+      </div>
+
+      <nav class="space-y-2">
+        <a class="block px-3 py-2 flex hover:bg-white/10" href="/index.html" style="border: solid 2px rgb(245, 245, 245); border-radius: 8px; padding-left: 10px; padding-right: 10px; font-weight: bold;">
+          Go to Home  <img src="arrow.png" alt="" width="13%" style="margin-left: 30px;"></a>
+    
+        <a class="block px-3 py-2 rounded-md hover:bg-white/10" href="/Home/Dashbord/Profile.html">Profile</a>
+        <a class="block px-3 py-2 rounded-md hover:bg-white/5" href="/Home/Dashbord/Mycard.html">My Cart</a>
+        <a class="block px-3 py-2 rounded-md hover:bg-white/5" href="/Home/Dashbord/wishlist.html">Wishlist</a>
+      </nav>
+
+    <div class="mt-8">
+        <button id="logoutBtn" class="w-full bg-white text-orange-500 font-semibold py-2 rounded-md" > <a href="/Home/sign In/signIn.html">Logout</a></button>
+      </div>
+
+      <div class="mt-8 -xs opacity-80">
+        <div>Cart: <strong id="cartCount">0</strong> items</div>
+        <div>Total: <strong id="cartTotal">₹0</strong></div>
+      </div>
+    </aside>
+    <main class="main">
+      <div class="topbar">
+        <div style="display:flex;align-items:center;gap:12px">
+          <div style="font-weight:700">My Orders</div>
+          <div style="color:var(--muted);font-size:13px">Manage all your orders — track, update quantities, checkout.</div>
+        </div>
+        <div class="search"><input id="searchInput" placeholder="Search products or orders (e.g. wallet, order id...)"/></div>
+        <div class="user-actions">
+          <div class="pill">Hello, Muneeb</div>
+          <div class="pill">Orders: <span id="statOrders">0</span></div>
+          <div class="pill">Cart: ₹<span id="cartTotalTop">0</span></div>
+        </div>
+      </div>
+
+      <p class="subtitle">Professional view like marketplace. (Demo: data saved in local storage)</p>
+
+      <div class="layout">
+        <div>
+          <div class="products-card">
+            <h3 style="margin:0 0 12px">Available Products</h3>
+            <div class="products-grid" id="productsContainer"></div>
+          </div>
+
+          <div style="height:18px"></div>
+
+          <div class="orders-card">
+            <h3 style="margin:0 0 12px">Your Cart / Orders</h3>
+            <div style="overflow:auto">
+              <table>
+                <thead>
+                  <tr>
+                    <th style="width:40%">Item</th>
+                    <th style="width:15%">Price</th>
+                    <th style="width:20%">Quantity</th>
+                    <th style="width:15%">Total</th>
+                    <th style="width:10%">Action</th>
+                  </tr>
+                </thead>
+                <tbody id="ordersTable">
+                  <tr><td colspan="5" style="color:var(--muted)">No items in cart. Add products from above.</td></tr>
+                </tbody>
+              </table>
+            </div>
+          </div>
+        </div>
+
+        <aside>
+          <div class="summary-card">
+            <div style="display:flex;justify-content:space-between;align-items:center">
+              <div style="font-weight:700">Order Summary</div>
+              <div style="font-size:12px;color:var(--muted)">Saved in localStorage</div>
+            </div>
+            <div class="summary-row"><div>Items total</div><div>₹<span id="summarySubtotal">0</span></div></div>
+            <div class="summary-row"><div>Shipping</div><div>₹<span id="summaryShip">50</span></div></div>
+            <div style="height:8px"></div>
+            <div class="summary-row total"><div>Total</div><div>₹<span id="summaryTotal">0</span></div></div>
+
+            <div class="checkout">
+              <button class="btn btn-ghost" id="clearOrders">Clear</button>
+              <button class="btn btn-primary" id="checkoutBtn">Proceed to Checkout</button>
+            </div>
+
+            <hr style="margin:12px 0;border:none;border-top:1px solid #f1eef6">
+          
+          </div>
+        </aside>
+      </div>
+
+    </main>
+  </div>
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+    loadCart();
+    updateSummary();
+});
+
+function loadCart() {
+    const cart = JSON.parse(localStorage.getItem('cart')) || [];
+    const ordersTable = document.getElementById('ordersTable');
+    const cartCount = document.getElementById('cartCount');
+    const cartTotal = document.getElementById('cartTotal');
+    const cartTotalTop = document.getElementById('cartTotalTop');
+    const statOrders = document.getElementById('statOrders');
+
+    if (cart.length === 0) {
+        ordersTable.innerHTML = '<tr><td colspan="5" style="color:var(--muted)">No items in cart. Add products from home page.</td></tr>';
+        cartCount.textContent = '0';
+        cartTotal.textContent = '₹0';
+        cartTotalTop.textContent = '0';
+        statOrders.textContent = '0';
+        return;
+    }
+
+    let totalItems = 0;
+    let totalPrice = 0;
+
+    ordersTable.innerHTML = cart.map(item => {
+        const itemTotal = item.price * item.quantity;
+        totalItems += item.quantity;
+        totalPrice += itemTotal;
+
+        return `
+            <tr>
+                <td>
+                    <div style="display:flex;align-items:center;gap:12px">
+                        <img src="${item.image}" alt="${item.name}" style="width:50px;height:50px;border-radius:8px;object-fit:cover">
+                        <div>
+                            <div style="font-weight:600">${item.name}</div>
+                            <div style="font-size:12px;color:var(--muted)">ID: ${item.id}</div>
+                        </div>
+                    </div>
+                </td>
+                <td>₹${item.price}</td>
+                <td>
+                    <div class="qty-controls">
+                        <button onclick="changeQuantity('${item.id}', -1)">-</button>
+                        <span>${item.quantity}</span>
+                        <button onclick="changeQuantity('${item.id}', 1)">+</button>
+                    </div>
+                </td>
+                <td>₹${itemTotal}</td>
+                <td><button onclick="removeItem('${item.id}')" style="background:var(--danger);color:#fff;border:none;padding:6px 12px;border-radius:6px;cursor:pointer">Remove</button></td>
+            </tr>
+        `;
+    }).join('');
+
+    cartCount.textContent = totalItems;
+    cartTotal.textContent = '₹' + totalPrice;
+    cartTotalTop.textContent = totalPrice;
+    statOrders.textContent = cart.length;
+}
+
+function changeQuantity(id, delta) {
+    let cart = JSON.parse(localStorage.getItem('cart')) || [];
+    const index = cart.findIndex(item => item.id === id);
+    if (index > -1) {
+        cart[index].quantity += delta;
+        if (cart[index].quantity <= 0) {
+            cart.splice(index, 1);
+        }
+        localStorage.setItem('cart', JSON.stringify(cart));
+        loadCart();
+        updateSummary();
+    }
+}
+
+function removeItem(id) {
+    let cart = JSON.parse(localStorage.getItem('cart')) || [];
+    cart = cart.filter(item => item.id !== id);
+    localStorage.setItem('cart', JSON.stringify(cart));
+    loadCart();
+    updateSummary();
+}
+
+function updateSummary() {
+    const cart = JSON.parse(localStorage.getItem('cart')) || [];
+    const summarySubtotal = document.getElementById('summarySubtotal');
+    const summaryTotal = document.getElementById('summaryTotal');
+    const shipping = 50; // Fixed shipping
+
+    let subtotal = 0;
+    cart.forEach(item => {
+        subtotal += item.price * item.quantity;
+    });
+
+    summarySubtotal.textContent = subtotal;
+    summaryTotal.textContent = subtotal + shipping;
+}
+
+// Clear cart
+document.getElementById('clearOrders').addEventListener('click', function() {
+    localStorage.removeItem('cart');
+    loadCart();
+    updateSummary();
+});
+
+// Checkout (placeholder)
+document.getElementById('checkoutBtn').addEventListener('click', function() {
+    alert('Checkout functionality not implemented yet.');
+});
+
+// Export CSV (placeholder)
+document.getElementById('exportBtn').addEventListener('click', function() {
+    alert('Export CSV functionality not implemented yet.');
+});
+
+// Save to Profile (placeholder)
+document.getElementById('saveProfileCart').addEventListener('click', function() {
+    alert('Save to Profile functionality not implemented yet.');
+});
+</script>
+</body>
+</html>

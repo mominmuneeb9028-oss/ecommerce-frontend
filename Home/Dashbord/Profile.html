@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>MegaMart — Dashboard</title>
+  <link rel="icon" href="/assets/Q_logo.png" type="image/x-icon">
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link rel="stylesheet" href="dashboard.css">
+  <style>
+    body {
+      background-color: white;
+    }
+    /* subtle shadow cards like in your screenshot */
+    .glass-card{background:rgba(255,255,255,0.8);backdrop-filter: blur(6px);box-shadow: 0 6px 18px rgba(15,15,30,0.06);}
+    .sidebar-gradient{background: linear-gradient(180deg,#ff6a3d,#ff7f3d 60%, #ff7a3d 100%)}
+    .stat-card{border-radius:12px;padding:18px;}
+    input:focus, textarea:focus{outline:none;box-shadow:0 0 0 4px rgba(99,102,241,0.06);}
+  </style>
+</head>
+<body>
+  <div class="wrap">
+    <aside class="w-64 min-h-screen sidebar-gradient text-white p-6">
+      <div class="flex items-center gap-3 mb-8">
+        <div class="w-10 h-10 rounded-full bg-white/20 flex items-center justify-center font-bold">M</div>
+        <div>
+          <div class="font-bold text-lg">MegaMart</div>
+          <div class="text-xs opacity-90">Premium MegaMart Products</div>
+        </div>
+      </div>
+
+      <nav class="space-y-2">
+        <a class="block px-3 py-2 flex hover:bg-white/10" href="/index.html" style="border: solid 2px rgb(245, 245, 245); border-radius: 8px; padding-left: 10px; padding-right: 10px; font-weight: bold;">
+          Go to Home  <img src="arrow.png" alt="" width="13%" style="margin-left: 30px;"></a>
+    
+        <a class="block px-3 py-2 rounded-md hover:bg-white/10" href="Profile.html">Profile</a>
+        <a class="block px-3 py-2 rounded-md hover:bg-white/5" href="Mycard.html">My Cart</a>
+        <a class="block px-3 py-2 rounded-md hover:bg-white/5" href="wishlist.html  ">Wishlist</a>
+      </nav>
+
+      <div class="mt-8">
+        <button id="logoutBtn" class="w-full bg-white text-orange-500 font-semibold py-2 rounded-md" > <a href="/Home/sign In/signIn.html">Logout</a></button>
+      </div>
+
+
+      <div class="mt-8 -xs opacity-80">
+        <div>Cart: <strong id="cartCount">0</strong> items</div>
+        <div>Total: <strong id="cartTotal">₹0</strong></div>
+      </div>
+    </aside>
+    <main class="main">
+      <!-- Top area: user quick -->
+      <header class="topbar">
+        <div>
+          <h1 id="welcome">Welcome</h1>
+        </div>
+        <div class="mini-cart" id="miniCart">
+          <div>Cart: <span id="cartCount">0</span> items</div>
+          <div>Total: ₹<span id="cartTotal">0</span></div>
+        </div>
+      </header>
+
+      <!-- Sections -->
+      <section id="overview" class="section active">
+        <div class="cards">
+          <div class="card">
+            <h4>Total Orders</h4><div id="totalOrders">0</div>
+          </div>text
+          <div class="card">
+            <h4>Delivered</h4><div id="deliveredOrders">0</div>
+          </div>
+          <div class="card">
+            <h4>In Transit</h4><div id="inTransit">0</div>
+          </div>
+          <div class="card">
+            <h4>Wishlist</h4><div id="wishlistCount">0</div>
+          </div>
+        </div>
+
+        <h3>Recent Orders</h3>
+        <table class="orders-table">
+          <thead>
+            <tr><th>Image</th><th>Product</th><th>Qty</th><th>Price</th><th>Status</th><th>Date</th><th>Action</th></tr>
+          </thead>
+          <tbody id="recentOrdersBody">
+            <!-- populated by JS -->
+          </tbody>
+        </table>
+      </section>
+
+      <section id="orders" class="section">
+        <h3>All Orders</h3>
+        <table class="orders-table">
+          <thead>
+            <tr><th>Image</th><th>Product</th><th>Qty</th><th>Price</th><th>Status</th><th>Date</th><th>Actions</th></tr>
+          </thead>
+          <tbody id="ordersBody"></tbody>
+        </table>
+      </section>
+
+      <section id="profile" class="section">
+        <h3>Profile</h3>
+        <form id="profileForm" class="profile-form">
+          <label>Name <input id="name" /></label>
+          <label>Phone <input id="phone" /></label>
+          <label>Email <input id="email" disabled /></label>
+          <label>Photo URL <input id="photoURL" /></label>
+          <div class="profile-actions">
+            <button id="saveProfile" type="button">Save</button>
+            <button id="resetPassword" type="button">Send Password Reset</button>
+          </div>
+        </form>
+      </section>
+
+      <section id="addresses" class="section">
+        <h3>Saved Addresses</h3>
+        <div id="addressesList"></div>
+
+        <h4>Add Address</h4>
+        <form id="addressForm" class="address-form">
+          <input id="addrLabel" placeholder="Label (Home / Office)" required />
+          <input id="addrName" placeholder="Full Name" required />
+          <input id="addrPhone" placeholder="Phone" required />
+          <input id="addrLine" placeholder="Address line" required />
+          <input id="addrCity" placeholder="City" required />
+          <input id="addrPin" placeholder="Pincode" required />
+          <label><input type="checkbox" id="addrDefault" /> Set as default</label>
+          <button id="addAddressBtn" type="button">Add Address</button>
+        </form>
+      </section>
+
+      <section id="wishlist" class="section">
+        <h3>Wishlist</h3>
+        <div id="wishlistGrid" class="grid"></div>
+      </section>
+
+    </main>
+  </div>
+
+  <script type="module" src="dashboard.css"></script>
+</body>
+</html>
