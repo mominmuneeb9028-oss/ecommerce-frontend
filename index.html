@@ -20,9 +20,9 @@
 
     <div class="menu" id="menu">
       <a href="#">Home</a>
-      <a href="#">Product</a>
-      <a href="#">About</a>
-      <a href="#">Contact</a>
+      <a href="#product">Product</a>
+      <a href="/Home/Home.html#about">About</a>
+      <a href="/Home/Home.html#contact">Contact</a>
     </div>
 
     <div class="search-box">
@@ -32,13 +32,21 @@
 
     <div class="nav-icons">
       <div class="icon">
+        <a href="/Home/Dashbord/Profile.html">
         <i class="fa-regular fa-user"></i>
-        <span>Profile</span>
+        <span>Profile</span></a>
       </div>
 
       <div class="icon">
+        <a href="/Home/Dashbord/Mycard.html">
         <i class="fa-solid fa-cart-shopping"></i>
-        <span>Add to Cart</span>
+        <span>Add to Cart</span></a>
+      </div>
+
+      <div class="icon">
+        <a href="/Home/Dashbord/wishlist.html">
+        <img src="assets/heart.png" alt="Wishlist" style="width: 20px; height: 20px;">
+        <span>Wishlist</span></a>
       </div>
 
     </div>
@@ -114,7 +122,7 @@
 
 <div class="container">
         <div class="products-wrapper">
-            <h2 class="heading">Our Products</h2>
+            <h2 class="heading" id="product">Our Products</h2>
             <div class="product-container" id="productContainer">
             </div>
         </div>
