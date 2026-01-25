@@ -25,6 +25,35 @@ const app = initializeApp(firebaseConfig);
 const db = getFirestore(app);
 console.log(db);
 
+// Helper function to get product by ID from both collections
+async function getProductById(id) {
+  console.log("getProductById called with id:", id);
+  // First try "products" collection
+  const productsSnapshot = await getDocs(collection(db, "products"));
+  console.log("products collection docs:", productsSnapshot.size);
+  for (const doc of productsSnapshot.docs) {
+    console.log("Checking doc id:", doc.id);
+    if (doc.id === id) {
+      console.log("Found in products collection:", doc.data());
+      return { id: doc.id, ...doc.data() };
+    }
+  }
+
+  // If not found, try "products collection"
+  const productsCollectionSnapshot = await getDocs(collection(db, "products collection"));
+  console.log("products collection docs:", productsCollectionSnapshot.size);
+  for (const doc of productsCollectionSnapshot.docs) {
+    console.log("Checking doc id:", doc.id);
+    if (doc.id === id) {
+      console.log("Found in products collection:", doc.data());
+      return { id: doc.id, ...doc.data() };
+    }
+  }
+
+  console.log("Product not found for id:", id);
+  return null;
+}
+
 
 async function loadBrands() {
   const brandsContainer = document.getElementById("brands");
@@ -62,7 +91,7 @@ async function loadProducts() {
         
         <p class="price">₹${product.price}</p>
         <div class="product-actions">
-  <button class="add-bag-btn" onclick="addToCart('${product.id}');event.stopPropagation();">
+  <button class="add-bag-btn" onclick="addToCart('${doc.id}');event.stopPropagation();">
      ADD TO CARD
   </button>
 
@@ -108,7 +137,7 @@ async function loadFurnitureProducts() {
         <p class="furniture-price">₹${item.price}</p>
 
         <div class="product-actions">
-          <button class="add-bag-btn" onclick="addToCart('${doc.id}')">
+          <button class="add-bag-btn" onclick="addToCart('${doc.id}');event.stopPropagation();">
             ADD TO CART
           </button>
 
@@ -149,7 +178,7 @@ async function loadLaptopProducts() {
         <p class="furniture-price">₹${item.price}</p>
 
         <div class="product-actions">
-          <button class="add-bag-btn" onclick="addToCart('${doc.id}')">
+          <button class="add-bag-btn" onclick="addToCart('${doc.id}');event.stopPropagation();">
             ADD TO CART
           </button>
 
@@ -213,18 +242,17 @@ window.openProduct = function(id) {
 
 // ================= ADD TO CART =================
 window.addToCart = async function(id) {
-  const snapshot = await getDocs(collection(db, "products"));
-  let productData = null;
+  console.log("addToCart called with id:", id);
+  const productData = await getProductById(id);
+  console.log("productData:", productData);
 
-  snapshot.forEach(doc => {
-    if (doc.id === id) {
-      productData = { id: doc.id, ...doc.data() };
-    }
-  });
-
-  if (!productData) return;
+  if (!productData) {
+    console.error("Product not found for id:", id);
+    return;
+  }
 
   let cart = JSON.parse(localStorage.getItem("cart")) || [];
+  console.log("Current cart:", cart);
 
   const index = cart.findIndex(item => item.id === id);
 
@@ -235,20 +263,14 @@ window.addToCart = async function(id) {
   }
 
   localStorage.setItem("cart", JSON.stringify(cart));
+  console.log("Updated cart:", cart);
   alert("Added to Cart ✅");
 };
 
 
 // ================= ADD TO WISHLIST =================
 window.addToWishlist = async function(id) {
-  const snapshot = await getDocs(collection(db, "products"));
-  let productData = null;
-
-  snapshot.forEach(doc => {
-    if (doc.id === id) {
-      productData = { id: doc.id, ...doc.data() };
-    }
-  });
+  const productData = await getProductById(id);
 
   if (!productData) return;
 
