@@ -218,12 +218,6 @@
     font-size: 14px;
 }
 
-.product-actions {
-    display: flex;
-    gap: 10px;
-    align-items: center;
-}
-
 
 .add-bag-btn {
     white-space: nowrap;   /* text ko next line me jaane se roke */
@@ -262,10 +256,6 @@
     background-color: tomato;
     color: white;
 }
-
-
-
-
 
 .brand-slider {
   width: 100%;
@@ -402,14 +392,13 @@
 /* Responsive */
 @media(max-width:768px){
   .footer-container{
-    grid-template-columns:repeat(2,1fr);
+    grid-template-columns:repeat(1,1fr);
   }
 }
 
 
 @media (max-width: 768px) 
 {
-
   .hamburger 
   {
     display: block;
@@ -490,7 +479,54 @@
   .category-bar a {
     font-size: 13px;
   }
+  /* Our Products: 1 card per row */
   .product-container {
-        grid-template-columns: repeat(2, 1fr);
-    }
+    grid-template-columns: 1fr;
+    justify-items: center;
+  }
+
+  .product-card {
+    width: 100%;
+    max-width: 340px;   /* same size for all cards */
+    margin: 0 auto;
+  }
+
+  .product-card img {
+    height: 200px;
+    object-fit: contain;
+  }
+
+    /* Furniture Section */
+  .furniture-container {
+    grid-template-columns: repeat(2, 1fr); /* 2 items per row */
+    gap: 15px;
+    padding: 20px 0;
+  }
+
+  /* Laptop Section (uses same container class) */
+  .laptop-section .furniture-container {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  /* Shoes Section (uses same container class) */
+  .shoes-section .furniture-container {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  /* Optional: reduce image height on mobile */
+  .furniture-card img {
+    height: 180px;
+  }
+
+  /* Text adjustments */
+  .furniture-card h6 {
+    font-size: 14px;
+    padding: 10px;
+    height: auto;
+  }
+
+  .furniture-price {
+    font-size: 16px;
+  }
+
 }

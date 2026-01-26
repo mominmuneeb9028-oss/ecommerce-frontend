@@ -1,0 +1,408 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Quibble | Premium Quality Products Designed For Modern Lifestyle Needs | Everything You Need Delivered Fast At Best Prices</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.0/font/bootstrap-icons.css">
+  <link rel="icon" href="assets/Q_logo.png" type="image/x-icon">
+</head>
+<body>
+    <style>
+        body {
+  margin: 0;
+  font-family: Arial, sans-serif;
+  background: #f5f5f5;
+}
+
+
+#products {
+  padding: 20px;
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+  gap: 20px;
+}
+
+.product {
+  background: #fff;
+  padding: 15px;
+  border-radius: 6px;
+  text-align: center;
+}
+
+.product img {
+  width: 100%;
+  height: 160px;
+  object-fit: contain;
+}
+
+.product h3 {
+  font-size: 14px;
+  height: 40px;
+  overflow: hidden;
+}
+
+.product p {
+  font-weight: bold;
+}
+
+.product button {
+  background: rgb(238, 89, 3);
+  color: white;
+  border: none;
+  border-radius: 10px;
+  padding: 8px 22px;
+  cursor: pointer;
+}
+
+.buttons {
+  display: flex;
+  gap: 10px;
+  justify-content: center;
+}
+
+#loading {
+  text-align: center;
+  font-size: 18px;
+  margin-top: 40px;
+}
+
+#error {
+  color: red;
+  text-align: center;
+}
+
+
+
+.navbar
+{
+    width: 100%;
+
+    background-color: #fff5f5;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 40px;
+    padding: 7px ;
+    display: flex;
+    flex-direction: row;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+
+    top: 0;
+    left: 0;
+    z-index: 1000;
+
+}
+
+.search-wrapper {
+    position: relative;
+    
+}
+
+.search {
+    position: absolute;
+    top: 50%;
+    left: 15px;
+    transform: translateY(-50%);
+    z-index: 2;    
+    background-color: hsl(0, 0%, 100%);
+    padding: 6px;
+    border-radius: 50%;
+    width: 30px;
+}
+
+.search-bar {
+    background-color: #fff;
+    border-radius: 125px;
+    padding: 7px 20px 7px 55px; 
+    border: solid 1.8px rgb(214, 86, 0);
+    box-shadow: 0 2px 200px rgba(255, 60, 0, 0.4);
+    position: relative;
+    z-index: 1;
+    width: 450px;
+}
+
+
+nav
+{
+    display: flex;
+    gap: 5px;
+
+}
+
+
+
+#shipping
+{
+    border-radius: 5px;
+    padding: 1px 15px;
+    color: rgb(0, 0, 0);
+    margin-left: 10px;
+    font-family: 'Arial', sans-serif;
+    background-color: rgb(233, 231, 231);
+}
+
+a
+{
+    text-decoration: none;
+    color: #e0511d;
+    font-weight: bold;
+    font-size: 15px;
+    font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+    padding: 5px 10px;
+    border-radius: 5px;
+    transition: all 0.3s ease;
+}
+
+a:hover {
+    color: #c4411a;
+    background-color: rgba(224, 81, 29, 0.1);
+    transform: scale(1.05);
+    text-decoration: none;
+}
+
+
+.cart-icon, .notification-icon
+{
+    position: relative;
+    
+    color: rgb(255, 255, 255);
+    cursor: pointer;
+    background-color: rgb(253, 84, 41);
+    border-radius: 80px;
+    width: 30px;
+    padding: 4px;
+}
+
+
+.cartsicons
+{
+    display: flex;
+    gap: 20px;
+
+}
+
+.hamburger {
+    display: none;
+    flex-direction: column;
+    cursor: pointer;
+    position: relative;
+}
+
+.hamburger span {
+    width: 25px;
+    height: 3px;
+    background-color: #e0511d;
+    margin: 3px 0;
+    transition: 0.7s;
+    transition: all;
+    transition: ease-in;
+
+}
+
+
+/*NAVBAR MEDIA QUERY */
+@media (max-width: 767px){
+    .hamburger {
+        display: flex;
+    }
+
+    .navbar
+    {
+        gap:0px;
+    }
+    nav {
+        display: none;
+        flex-direction: column;
+        position: absolute;
+        top: 50px;
+        left: 0;
+        width: 100%;
+        background-color: #fff5f5;
+        padding: 20px;
+        box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+        z-index: 1050; 
+    }
+
+    
+
+    nav.active {
+        display: flex;
+    }
+
+    .hamburger.active span:nth-child(1) {
+        transform: rotate(-45deg) translate(-5px, 6px);
+    }
+
+    .hamburger.active span:nth-child(2) {
+        opacity: 0;
+    }
+
+    .hamburger.active span:nth-child(3) {
+        transform: rotate(45deg) translate(-5px, -6px);
+    }
+
+    
+    .search-bar {
+        width: 230px;
+    }
+    .navbar {
+        position: relative;
+    }
+
+
+    .QuibbleLogo
+    {
+        width: 120px;
+     
+    }
+
+    .cta-btn{
+        width: 20px;
+    }
+
+    .carousel-caption {
+        display:  none !important
+    }
+    ;
+
+}
+
+
+@media (max-width: 576px) {
+    .search-bar {
+        width: 150px;
+        height: 40px;
+    }
+
+
+    .QuibbleLogo {
+        width: 100px;
+    }
+    
+    .search {
+        left: 10px;
+    }
+
+    .carousel-caption {
+    display: none !important;
+  }
+
+}
+
+
+
+
+@media (max-width: 476px) {
+    .search-bar {
+        width: 100px;
+    }
+
+    nav {
+        gap: 10px;
+    }
+
+    .navbar {
+        padding: 0 5px;
+        }
+
+    .QuibbleLogo {
+        width: 80px;
+    }
+
+}
+
+</style>
+
+<header>
+  <!-----Header----->
+  <div class="navbar">
+  <img src="assets/quibblelogo.png" alt="" width="115px" class="QuibbleLogo">  
+    <nav>
+      <a href="/index.html">Home</a>
+      <a href="#product">Products</a>
+      <a href="/Home/Home.html#about">About</a>
+      <a href="/Home/Home.html#contact">Contact</a>
+  </nav>
+
+
+  <div class="search-wrapper">
+<img src="assets/search.png" alt="" class="search">
+<input type="text" placeholder="Search Any Products For Your Home, Office, Kitchen...." class="search-bar">
+</div>
+
+
+  <div class="cartsicons">
+  <a href="/Home/Dashboard/MyCart.html"><img src="assets/icons8-cart-64.png" alt="" class="cart-icon" width="40px"></a>
+  <a href="/Home/Dashboard/Profile.html"><img src="assets/profile.png" alt="" class="notification-icon" width="40px"></a>
+
+  </div>
+
+  <div class="hamburger">
+      <span></span>
+      <span></span>
+      <span></span>
+  </div>
+</div>
+</header>
+
+<div id="loading">Loading products...</div>
+<div id="error"></div>
+
+<div id="products"></div>
+
+<script>
+    const productsDiv = document.getElementById("products");
+const loading = document.getElementById("loading");
+const error = document.getElementById("error");
+const cartCount = document.getElementById("cart-count");
+
+let cart = [];
+let wishlist = [];
+
+fetch("https://fakestoreapi.com/products")
+  .then(res => res.json())
+  .then(data => {
+    loading.style.display = "none";
+    showProducts(data);
+  })
+  .catch(err => {
+    loading.style.display = "none";
+    error.innerText = "Failed to load products";
+    console.error(err);
+  });
+
+function showProducts(products) {
+  products.forEach(p => {
+    const card = document.createElement("div");
+    card.className = "product";
+
+    card.innerHTML = `
+      <img src="${p.image}" loading="lazy">
+      <h3>${p.title}</h3>
+      <p>₹${p.price}</p>
+      <div class="buttons">
+        <button onclick="addToCart('${p.id}')">Add to Cart</button>
+          <button onclick="addToWishlist('${p.id}'); event.stopPropagation();" class="wishlist-btn"><i class="bi bi-heart"></i></button>
+      </div>
+    `;
+
+    productsDiv.appendChild(card);
+  });
+}
+
+
+
+console.log("E-Commerce Website Loaded");
+
+const hamburger = document.querySelector('.hamburger');
+const nav = document.querySelector('nav');
+
+hamburger.addEventListener('click', () => {
+    nav.classList.toggle('active');
+    hamburger.classList.toggle('active');
+}
+);
+</script>
+</body>
+</html>
