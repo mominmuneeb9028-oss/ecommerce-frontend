@@ -22,7 +22,8 @@
 {
   list-style: none;
   display: flex;
-  gap: 20px;padding: 20px;
+  gap: 20px;
+  padding: 20px;
 }
 .menu a 
 {
@@ -389,6 +390,24 @@
   color:#94a3b8;
 }
 
+.toast-msg{
+  position: fixed;
+  bottom: 30px;
+  right: 30px;
+  background: #222;
+  color: #fff;
+  padding: 12px 20px;
+  border-radius: 6px;
+  z-index: 99999;
+  font-size: 14px;
+  animation: fade 0.3s ease;
+}
+@keyframes fade{
+  from{opacity:0; transform:translateY(10px)}
+  to{opacity:1}
+}
+
+
 /* Responsive */
 @media(max-width:768px){
   .footer-container{
@@ -408,29 +427,29 @@
     padding: 4px;
   }
 
-  .menu 
-  {
-    position: absolute;
-    top: 70px;
-    left: 0;
-    width: 100%;
-    background: #fff;
-    flex-direction: column;
-    align-items: center;
-    display: none;
-    padding: 15px 0;
-    box-shadow: 0 5px 10px rgba(0,0,0,0.1);
-  }
+  .menu {
+  display: none;
+  position: absolute;
+  top: 70px;
+  left: 0;
+  width: 100%;
+  background: #fff;
+  flex-direction: column;
+  align-items: center;
+  padding: 15px 0;
+  box-shadow: 0 5px 10px rgba(0,0,0,0.1);
+  z-index: 9999;
+}
+
+.menu.active {
+  display: flex !important;
+}
+
   .navbar {
     position: relative;   
     top: 0;
     z-index: 9999;
     background: #fff;
-  }
-
-  .menu.active 
-  {
-    display: flex;
   }
 
   .search-box 
@@ -478,6 +497,10 @@
 
   .category-bar a {
     font-size: 13px;
+  }
+
+  .nav-icons .icon:nth-child(3){
+    display: none;
   }
   /* Our Products: 1 card per row */
   .product-container {

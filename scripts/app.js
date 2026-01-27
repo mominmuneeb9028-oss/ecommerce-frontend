@@ -1,8 +1,8 @@
 console.log("E-Commerce Website Loaded");
-function toggleMenu() {
+window.toggleMenu = function () {
   let menu = document.getElementById("menu");
   menu.classList.toggle("active");
-}
+};
 
 
   // 🔥 Firebase Config
