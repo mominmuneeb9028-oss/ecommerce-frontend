@@ -4,16 +4,28 @@
   box-sizing: border-box;
   font-family: Arial, sans-serif;
 }
+.navbar-container {
+  top: 0;
+  left: 0;
+  width: 100%;
+  position: fixed;
+  z-index: 1000;
+}
 
-.navbar 
-{
+.navbar {
   display: flex;
   align-items: center;
   justify-content: space-between;
   padding: 12px 40px;
   background-color: #fff;
   box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+  position: fixed;   /* ⭐ important */
+  top: 0;
+  left: 0;
+  width: 100%;
+  z-index: 1000;
 }
+
 .logo img 
 {
   width: 200px;
@@ -38,50 +50,53 @@
 .menu a:hover::after {
   width: 100%;
 }
-.search-box 
-{
-  flex: 1;
-  margin: 0 40px;
+.search-wrapper {
   position: relative;
+  flex: 2;             
+  margin: 0 40px; 
 }
-.search-box input 
-{
-  width: 100%;
-  padding: 10px 40px 10px 15px;
-  border-radius: 6px;
-  border: 1px solid #ccc;
-  outline: none;
-}
-.search-box i 
-{
+.search-wrapper .search {
   position: absolute;
   right: 15px;
   top: 50%;
   transform: translateY(-50%);
   color: gray;
 }
+.search-wrapper .search-bar {
+  width: 100%;
+  padding: 10px 50px 10px 15px;
+  border: 1px solid #ccc;
+  border-radius: 25px;
+  font-size: 16px;
+}
 .nav-icons 
 {
   display: flex;
   gap: 30px;
 }
-.icon 
-{
-  text-align: center;
-  cursor: pointer;
+.cartsicons {
+  position: relative;
+  display: flex;
+  gap: 30px;
+  margin-right: 12px;
+  margin-top: 10px;
 }
-.icon i 
-{
-  font-size: 18px;
+.cart-icon {
+  padding: 10px;
+  background-color: rgb(31, 21, 21);
+  border-radius: 60px;
 }
-.icon span 
-{
-  display: block;
-  font-size: 12px;
-  margin-top: 4px;
-  padding: 5px;
+.notification-icon {
+  padding: 10px;
+  background-color: rgb(31, 21, 21);
+  border-radius: 60px;
 }
-.hamburger 
+.wishlist-icon {
+padding: 10px;
+  background-color: rgb(31, 21, 21);
+  border-radius: 60px;
+}
+.hamburger
 {
   display: none;
   font-size: 22px;
@@ -446,7 +461,7 @@
 }
 
   .navbar {
-    position: relative;   
+    position: fixed;   
     top: 0;
     z-index: 9999;
     background: #fff;
@@ -499,9 +514,6 @@
     font-size: 13px;
   }
 
-  .nav-icons .icon:nth-child(3){
-    display: none;
-  }
   /* Our Products: 1 card per row */
   .product-container {
     grid-template-columns: 1fr;
@@ -552,4 +564,20 @@
     font-size: 16px;
   }
 
+  .cart-icon,
+  .notification-icon {
+    width: 40px;
+    height: 40px;
+  }
+
+  /* Wishlist hide (agar pehle se nahi kiya) */
+  .wishlist-icon {
+    display: none;
+  }
+
+  /* Icons ke beech gap thoda kam */
+  .cartsicons {
+    gap: 15px;
+    margin-top: 6px;
+  }
 }

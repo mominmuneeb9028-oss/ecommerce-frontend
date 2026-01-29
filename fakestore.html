@@ -8,8 +8,8 @@
   <link rel="icon" href="assets/Q_logo.png" type="image/x-icon">
 </head>
 <body>
-    <style>
-        body {
+<style>
+  body {
   margin: 0;
   font-family: Arial, sans-serif;
   background: #f5f5f5;
@@ -72,13 +72,11 @@
   text-align: center;
 }
 
-
-
 .navbar
 {
     width: 100%;
 
-    background-color: #fff5f5;
+    background-color: #fff;
     display: flex;
     justify-content: space-between;
     align-items: center;
@@ -122,15 +120,12 @@
     width: 450px;
 }
 
-
 nav
 {
     display: flex;
     gap: 5px;
 
 }
-
-
 
 #shipping
 {
@@ -161,7 +156,6 @@ a:hover {
     text-decoration: none;
 }
 
-
 .cart-icon, .notification-icon
 {
     position: relative;
@@ -173,7 +167,6 @@ a:hover {
     width: 30px;
     padding: 4px;
 }
-
 
 .cartsicons
 {
@@ -200,7 +193,6 @@ a:hover {
 
 }
 
-
 /*NAVBAR MEDIA QUERY */
 @media (max-width: 767px){
     .hamburger {
@@ -223,9 +215,6 @@ a:hover {
         box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
         z-index: 1050; 
     }
-
-    
-
     nav.active {
         display: flex;
     }
@@ -242,14 +231,12 @@ a:hover {
         transform: rotate(45deg) translate(-5px, -6px);
     }
 
-    
     .search-bar {
         width: 230px;
     }
     .navbar {
         position: relative;
     }
-
 
     .QuibbleLogo
     {
@@ -289,9 +276,6 @@ a:hover {
   }
 
 }
-
-
-
 
 @media (max-width: 476px) {
     .search-bar {
@@ -333,8 +317,8 @@ a:hover {
 
 
   <div class="cartsicons">
-  <a href="/Home/Dashboard/MyCart.html"><img src="assets/add-card.png" alt="" class="cart-icon" width="40px"></a>
-  <a href="/Home/Dashboard/Profile.html"><img src="assets/profile.png" alt="" class="notification-icon" width="40px"></a>
+  <a href="/Home/Dashbord/Mycard.html"><img src="assets/cart.png" alt="" class="cart-icon" width="40px"></a>
+  <a href="/Home/Dashbord/Profile.html"><img src="assets/profile.png" alt="" class="notification-icon" width="40px"></a>
 
   </div>
 
@@ -390,8 +374,6 @@ function showProducts(products) {
     productsDiv.appendChild(card);
   });
 }
-
-
 
 console.log("E-Commerce Website Loaded");
 
