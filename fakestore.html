@@ -15,7 +15,6 @@
   background: #f5f5f5;
 }
 
-
 #products {
   padding: 20px;
   display: grid;
@@ -28,6 +27,7 @@
   padding: 15px;
   border-radius: 6px;
   text-align: center;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.08);
 }
 
 .product img {
@@ -47,12 +47,17 @@
 }
 
 .product button {
-  background: rgb(238, 89, 3);
+  background: #2563eb;
   color: white;
   border: none;
   border-radius: 10px;
   padding: 8px 22px;
   cursor: pointer;
+  transition: 0.3s;
+}
+
+.product button:hover {
+  background: #1d4ed8;
 }
 
 .buttons {
@@ -72,236 +77,206 @@
   text-align: center;
 }
 
-.navbar
-{
-    width: 100%;
+/* NAVBAR */
 
-    background-color: #fff;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    gap: 40px;
-    padding: 7px ;
-    display: flex;
-    flex-direction: row;
-    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
-
-    top: 0;
-    left: 0;
-    z-index: 1000;
-
+.navbar {
+  width: 100%;
+  background-color: #fff;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 40px;
+  padding: 7px;
+  box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+  top: 0;
+  left: 0;
+  z-index: 1000;
 }
 
 .search-wrapper {
-    position: relative;
-    
+  position: relative;
 }
 
 .search {
-    position: absolute;
-    top: 50%;
-    left: 15px;
-    transform: translateY(-50%);
-    z-index: 2;    
-    background-color: hsl(0, 0%, 100%);
-    padding: 6px;
-    border-radius: 50%;
-    width: 30px;
+  position: absolute;
+  top: 50%;
+  left: 15px;
+  transform: translateY(-50%);
+  z-index: 2;    
+  background-color: #fff;
+  padding: 6px;
+  border-radius: 50%;
+  width: 30px;
 }
 
 .search-bar {
-    background-color: #fff;
-    border-radius: 125px;
-    padding: 7px 20px 7px 55px; 
-    border: solid 1.8px rgb(214, 86, 0);
-    box-shadow: 0 2px 200px rgba(255, 60, 0, 0.4);
-    position: relative;
-    z-index: 1;
-    width: 450px;
+  background-color: #fff;
+  border-radius: 125px;
+  padding: 7px 20px 7px 55px; 
+  border: solid 1.8px #2563eb;
+  box-shadow: 0 2px 200px rgba(37, 99, 235, 0.35);
+  position: relative;
+  z-index: 1;
+  width: 450px;
 }
 
-nav
-{
-    display: flex;
-    gap: 5px;
-
+nav {
+  display: flex;
+  gap: 5px;
 }
 
-#shipping
-{
-    border-radius: 5px;
-    padding: 1px 15px;
-    color: rgb(0, 0, 0);
-    margin-left: 10px;
-    font-family: 'Arial', sans-serif;
-    background-color: rgb(233, 231, 231);
+#shipping {
+  border-radius: 5px;
+  padding: 1px 15px;
+  margin-left: 10px;
+  font-family: Arial, sans-serif;
+  background-color: #e0ecff;
+  color: #1d4ed8;
 }
 
-a
-{
-    text-decoration: none;
-    color: #e0511d;
-    font-weight: bold;
-    font-size: 15px;
-    font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
-    padding: 5px 10px;
-    border-radius: 5px;
-    transition: all 0.3s ease;
+a {
+  text-decoration: none;
+  color: #2563eb;
+  font-weight: bold;
+  font-size: 15px;
+  padding: 5px 10px;
+  border-radius: 5px;
+  transition: all 0.3s ease;
 }
 
 a:hover {
-    color: #c4411a;
-    background-color: rgba(224, 81, 29, 0.1);
-    transform: scale(1.05);
-    text-decoration: none;
+  color: #1d4ed8;
+  background-color: rgba(37, 99, 235, 0.1);
+  transform: scale(1.05);
 }
 
-.cart-icon, .notification-icon
-{
-    position: relative;
-    
-    color: rgb(255, 255, 255);
-    cursor: pointer;
-    background-color: rgb(253, 84, 41);
-    border-radius: 80px;
-    width: 30px;
-    padding: 4px;
+.cart-icon, .notification-icon {
+  position: relative;
+  cursor: pointer;
+  background-color: #2563eb;
+  border-radius: 80px;
+  width: 30px;
+  padding: 4px;
 }
 
-.cartsicons
-{
-    display: flex;
-    gap: 20px;
-
+.cartsicons {
+  display: flex;
+  gap: 20px;
 }
 
 .hamburger {
-    display: none;
-    flex-direction: column;
-    cursor: pointer;
-    position: relative;
+  display: none;
+  flex-direction: column;
+  cursor: pointer;
+  position: relative;
 }
 
 .hamburger span {
-    width: 25px;
-    height: 3px;
-    background-color: #e0511d;
-    margin: 3px 0;
-    transition: 0.7s;
-    transition: all;
-    transition: ease-in;
-
+  width: 25px;
+  height: 3px;
+  background-color: #2563eb;
+  margin: 3px 0;
+  transition: 0.7s;
 }
 
-/*NAVBAR MEDIA QUERY */
+/* NAVBAR MEDIA QUERY */
+
 @media (max-width: 767px){
-    .hamburger {
-        display: flex;
-    }
-
-    .navbar
-    {
-        gap:0px;
-    }
-    nav {
-        display: none;
-        flex-direction: column;
-        position: absolute;
-        top: 50px;
-        left: 0;
-        width: 100%;
-        background-color: #fff5f5;
-        padding: 20px;
-        box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-        z-index: 1050; 
-    }
-    nav.active {
-        display: flex;
-    }
-
-    .hamburger.active span:nth-child(1) {
-        transform: rotate(-45deg) translate(-5px, 6px);
-    }
-
-    .hamburger.active span:nth-child(2) {
-        opacity: 0;
-    }
-
-    .hamburger.active span:nth-child(3) {
-        transform: rotate(45deg) translate(-5px, -6px);
-    }
-
-    .search-bar {
-        width: 230px;
-    }
-    .navbar {
-        position: relative;
-    }
-
-    .QuibbleLogo
-    {
-        width: 120px;
-     
-    }
-
-    .cta-btn{
-        width: 20px;
-    }
-
-    .carousel-caption {
-        display:  none !important
-    }
-    ;
-
-}
-
-
-@media (max-width: 576px) {
-    .search-bar {
-        width: 150px;
-        height: 40px;
-    }
-
-
-    .QuibbleLogo {
-        width: 100px;
-    }
-    
-    .search {
-        left: 10px;
-    }
-
-    .carousel-caption {
-    display: none !important;
+  .hamburger {
+    display: flex;
   }
 
+  .navbar {
+    gap: 0px;
+    position: relative;
+  }
+
+  nav {
+    display: none;
+    flex-direction: column;
+    position: absolute;
+    top: 50px;
+    left: 0;
+    width: 100%;
+    background-color: #eef4ff;
+    padding: 20px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    z-index: 1050; 
+  }
+
+  nav.active {
+    display: flex;
+  }
+
+  .hamburger.active span:nth-child(1) {
+    transform: rotate(-45deg) translate(-5px, 6px);
+  }
+
+  .hamburger.active span:nth-child(2) {
+    opacity: 0;
+  }
+
+  .hamburger.active span:nth-child(3) {
+    transform: rotate(45deg) translate(-5px, -6px);
+  }
+
+  .search-bar {
+    width: 230px;
+  }
+
+  .megamartlogo {
+    width: 200px;
+  }
+
+  .carousel-caption {
+    display: none !important;
+  }
+}
+
+@media (max-width: 576px) {
+  .search-bar {
+    width: 150px;
+    height: 40px;
+  }
+
+  .megamartlogo {
+    width: 100px;
+  }
+  
+  .search {
+    left: 10px;
+  }
+
+  .carousel-caption {
+    display: none !important;
+  }
 }
 
 @media (max-width: 476px) {
-    .search-bar {
-        width: 100px;
-    }
+  .search-bar {
+    width: 100px;
+  }
 
-    nav {
-        gap: 10px;
-    }
+  nav {
+    gap: 10px;
+  }
 
-    .navbar {
-        padding: 0 5px;
-        }
+  .navbar {
+    padding: 0 5px;
+  }
 
-    .QuibbleLogo {
-        width: 80px;
-    }
-
+  .megamartlogo {
+    width: 80px;
+  }
 }
+
 
 </style>
 
 <header>
   <!-----Header----->
   <div class="navbar">
-    <img src="assets/logo.png" alt="" width="115px" class="QuibbleLogo">
+    <img src="assets/logo.png" alt="" width="115px" class="megamartlogo">
     <nav>
       <a href="/index.html">Home</a>
       <a href="#product">Products</a>
