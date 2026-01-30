@@ -40,11 +40,11 @@
 .menu a 
 {
   text-decoration: none;
-  color: black;
+  color: #2563eb;
   font-weight: 500;
 }
 .menu a:hover {
-  color: #9f2089;
+  color: #150f18;
 }
 
 .menu a:hover::after {
@@ -83,17 +83,17 @@
 }
 .cart-icon {
   padding: 10px;
-  background-color: rgb(31, 21, 21);
+  background-color: #2563eb;
   border-radius: 60px;
 }
 .notification-icon {
   padding: 10px;
-  background-color: rgb(31, 21, 21);
+  background-color:#2563eb;
   border-radius: 60px;
 }
 .wishlist-icon {
 padding: 10px;
-  background-color: rgb(31, 21, 21);
+  background-color: #2563eb;
   border-radius: 60px;
 }
 .hamburger
@@ -134,8 +134,8 @@ padding: 10px;
   gap: 25px;
   padding: 12px 40px;
   background-color: #fff;
-  border-top: 1px solid #eee;
-  border-bottom: 1px solid #eee;
+  border-top: 1px solid #e5edff;
+  border-bottom: 1px solid #e5edff;
   overflow-x: auto;
   white-space: nowrap;
 }

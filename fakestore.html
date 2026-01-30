@@ -179,6 +179,16 @@ a:hover {
   transition: 0.7s;
 }
 
+
+.logo-text{
+  font-size: 28px;
+  font-weight: 900;
+  letter-spacing: 2px;
+  color: #2563eb;   /* same blue theme */
+  margin: 0;
+  font-family: Arial, Helvetica, sans-serif;
+}
+
 /* NAVBAR MEDIA QUERY */
 
 @media (max-width: 767px){
@@ -224,10 +234,6 @@ a:hover {
     width: 230px;
   }
 
-  .megamartlogo {
-    width: 200px;
-  }
-
   .carousel-caption {
     display: none !important;
   }
@@ -239,9 +245,13 @@ a:hover {
     height: 40px;
   }
 
-  .megamartlogo {
-    width: 100px;
-  }
+  .logo-text{
+  font-size: 18px;
+  color: #2563eb;  
+  margin: 0;
+  font-family: Arial, Helvetica, sans-serif;
+}
+
   
   .search {
     left: 10px;
@@ -264,10 +274,15 @@ a:hover {
   .navbar {
     padding: 0 5px;
   }
+.logo-text{
+  font-size: 18px;
+  font-weight: 900;
+  letter-spacing: 2px;
+  color: #2563eb;   /* same blue theme */
+  margin: 0;
+  font-family: Arial, Helvetica, sans-serif;
+}
 
-  .megamartlogo {
-    width: 80px;
-  }
 }
 
 
@@ -276,7 +291,8 @@ a:hover {
 <header>
   <!-----Header----->
   <div class="navbar">
-    <img src="assets/logo.png" alt="" width="115px" class="megamartlogo">
+    <h2 class="logo-text">MEGAMART</h2>
+
     <nav>
       <a href="/index.html">Home</a>
       <a href="#product">Products</a>
