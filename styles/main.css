@@ -9,6 +9,7 @@
   left: 0;
   width: 100%;
   z-index: 1000;
+  position: fixed;
 }
 .logo-text{
   font-size: 28px;
@@ -137,6 +138,7 @@ padding: 10px;
   border-bottom: 1px solid #e5edff;
   overflow-x: auto;
   white-space: nowrap;
+  margin-top: 80px;
 }
 
 .category-bar a {
@@ -434,9 +436,19 @@ gap: 20px;
 }
 
   .navbar {
+    flex-wrap: nowrap;
     top: 0;
     z-index: 9999;
     background: #fff;
+  }
+.search-wrapper {
+    flex: 1;
+    margin: 0 10px;
+  }
+
+  .search-wrapper .search-bar {
+    font-size: 14px;
+    padding: 8px 35px 8px 12px;
   }
 
   .search-box 
@@ -461,20 +473,21 @@ gap: 20px;
   }
 
   /* Our Products: 1 card per row */
+  .products-wrapper {
+    padding: 0 0 40px 0;
+    margin: 0 auto;
+    width: 100%;
+    box-sizing: border-box;
+
+  }
+
   .product-container {
     grid-template-columns: 1fr;
     justify-items: center;
-  }
-
-  .product-card {
-    width: 100%;
-    max-width: 340px;   /* same size for all cards */
     margin: 0 auto;
-  }
-
-  .product-card img {
-    height: 200px;
-    object-fit: contain;
+    width: 100%;
+    max-width: 400px;
+    box-sizing: border-box;
   }
 
     /* Furniture Section */
