@@ -117,8 +117,9 @@ button {
     <p id="description"></p>
 
     <div class="btn-group">
-      <button class="add-cart">Add To Cart</button>
-      <button class="wishlist">Wishlist</button>
+      <button class="add-cart" id="addToCartBtn">Add To Cart</button>
+      <button class="wishlist" id="addToWishlistBtn">Wishlist</button>
+
     </div>
   </div>
 </div>
@@ -151,6 +152,54 @@ document.getElementById("name").innerText = data.name;
 document.getElementById("image").src = data.image;
 document.getElementById("price").innerText = "₹" + data.price;
 document.getElementById("description").innerText = data.description;
+
+
+// ================= ADD TO CART (PRODUCT PAGE) =================
+document.getElementById("addToCartBtn").addEventListener("click", () => {
+  let cart = JSON.parse(localStorage.getItem("cart")) || [];
+
+  const index = cart.findIndex(item => item.id === id);
+
+  if (index > -1) {
+    cart[index].quantity += 1;
+  } else {
+    cart.push({
+      id: id,
+      name: data.name,
+      price: data.price,
+      image: data.image,
+      quantity: 1
+    });
+  }
+
+  localStorage.setItem("cart", JSON.stringify(cart));
+  alert("Added to Cart ✅");
+});
+
+
+import { collection, getDocs } from 
+"https://www.gstatic.com/firebasejs/10.7.1/firebase-firestore.js";
+
+async function getProductById(id) {
+  const collections = ["products", "products collection"];
+
+  for (let col of collections) {
+    const snap = await getDocs(collection(db, col));
+    for (const doc of snap.docs) {
+      if (doc.id === id) {
+        return { id: doc.id, ...doc.data() };
+      }
+    }
+  }
+  return null;
+}
+
+const product = await getProductById(id);
+
+document.getElementById("name").innerText = product.name;
+document.getElementById("image").src = product.image;
+document.getElementById("price").innerText = "₹" + product.price;
+document.getElementById("description").innerText = product.description;
 
 </script>
 
